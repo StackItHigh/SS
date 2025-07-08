@@ -82,8 +82,9 @@
 
         .banner-content {
             display: flex;
-            animation: scroll 20s linear infinite;
+            animation: scroll 30s linear infinite;
             white-space: nowrap;
+            align-items: center;
         }
 
         .banner-text {
@@ -92,6 +93,7 @@
             color: black;
             margin-right: 100px;
             text-shadow: none;
+            flex-shrink: 0;
         }
 
         @keyframes scroll {
@@ -99,21 +101,8 @@
                 transform: translateX(0);
             }
             100% {
-                transform: translateX(-100%);
+                transform: translateX(-50%);
             }
-        }
-
-        /* Duplicate the banner text to create seamless loop */
-        .banner-content {
-            display: flex;
-            width: 200%;
-        }
-
-        .banner-section {
-            display: flex;
-            width: 50%;
-            justify-content: space-around;
-            align-items: center;
         }
 
         /* About Section */
@@ -283,8 +272,8 @@
             }
 
             .banner-text {
-                font-size: 1.8rem;
-                margin-right: 40px;
+                font-size: 1.5rem;
+                margin-right: 50px;
             }
 
             .about h2 {
@@ -354,20 +343,26 @@
 
     <div class="scrolling-banner">
         <div class="banner-content">
-            <div class="banner-section">
-                <span class="banner-text">$STUBBY</span>
-                <span class="banner-text">$STUBBY</span>
-                <span class="banner-text">$STUBBY</span>
-                <span class="banner-text">$STUBBY</span>
-                <span class="banner-text">$STUBBY</span>
-            </div>
-            <div class="banner-section">
-                <span class="banner-text">$STUBBY</span>
-                <span class="banner-text">$STUBBY</span>
-                <span class="banner-text">$STUBBY</span>
-                <span class="banner-text">$STUBBY</span>
-                <span class="banner-text">$STUBBY</span>
-            </div>
+            <span class="banner-text">$STUBBY</span>
+            <span class="banner-text">$STUBBY</span>
+            <span class="banner-text">$STUBBY</span>
+            <span class="banner-text">$STUBBY</span>
+            <span class="banner-text">$STUBBY</span>
+            <span class="banner-text">$STUBBY</span>
+            <span class="banner-text">$STUBBY</span>
+            <span class="banner-text">$STUBBY</span>
+            <span class="banner-text">$STUBBY</span>
+            <span class="banner-text">$STUBBY</span>
+            <span class="banner-text">$STUBBY</span>
+            <span class="banner-text">$STUBBY</span>
+            <span class="banner-text">$STUBBY</span>
+            <span class="banner-text">$STUBBY</span>
+            <span class="banner-text">$STUBBY</span>
+            <span class="banner-text">$STUBBY</span>
+            <span class="banner-text">$STUBBY</span>
+            <span class="banner-text">$STUBBY</span>
+            <span class="banner-text">$STUBBY</span>
+            <span class="banner-text">$STUBBY</span>
         </div>
     </div>
 
