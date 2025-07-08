@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STUBBY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: #0024ff;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Main Hero Section */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            text-align: center;
+            padding: 60px 0 0 0;
+        }
+
+        .hero-image {
+            width: 500px;
+            height: 500px;
+            margin-bottom: 100px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Scrolling Banner */
+        .scrolling-banner {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            padding: 15px 0;
+            background: white;
+            border: 2px solid black;
+        }
+
+        .scrolling-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: white;
+        }
+
+        .scrolling-banner::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: white;
+        }
+
+        .banner-content {
+            display: flex;
+            animation: scroll 20s linear infinite;
+            white-space: nowrap;
+        }
+
+        .banner-text {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: black;
+            margin-right: 100px;
+            text-shadow: none;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        /* Duplicate the banner text to create seamless loop */
+        .banner-content {
+            display: flex;
+            width: 200%;
+        }
+
+        .banner-section {
+            display: flex;
+            width: 50%;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .about h2 {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 40px;
+            color: white;
+        }
+
+        .about p {
+            font-size: 1.5rem;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
+            color: white;
+        }
+
+        .about strong {
+            font-weight: 700;
+        }
+
+        /* Info Boxes Section */
+        .info-boxes {
+            padding: 80px 0;
+        }
+
+        .boxes-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .info-box {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            text-align: left;
+            border: 2px solid black;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-box img {
+            width: 100%;
+            height: 200px;
+            border-radius: 15px;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: none;
+        }
+
+        .info-box h3 {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: black;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .info-box h3::before {
+            content: "✦";
+            font-size: 1.5rem;
+            margin-right: 10px;
+            color: black;
+        }
+
+        .info-box p {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: black;
+            line-height: 1.6;
+            margin-bottom: 5px;
+        }
+
+        /* Social Icons Section */
+        .social-icons {
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .icons-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .social-icon {
+            width:50px;
+            height: 50px;
+            transition: transform 0.3s ease;
+        }
+
+        .social-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .social-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* CA Section */
+        .ca-section {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .ca-section h2 {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 40px;
+            color: white;
+        }
+
+        .ca-section p {
+            font-size: 1.5rem;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
+            color: white;
+            word-break: break-all;
+        }
+
+        /* Historical Images */
+        .historical-images {
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .historical-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .historical-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 15px;
+            object-fit: cover;
+            border: 3px solid white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            margin: 0 auto;
+            transition: transform 0.3s ease;
+        }
+
+        .historical-image:hover {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .hero-image {
+                width: 350px;
+                height: 350px;
+            }
+
+            .banner-text {
+                font-size: 2rem;
+                margin-right: 50px;
+            }
+
+            .about h2 {
+                font-size: 2.5rem;
+            }
+
+            .about p {
+                font-size: 1.2rem;
+                padding: 0 20px;
+            }
+
+            .boxes-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .info-box {
+                padding: 25px;
+            }
+
+            .info-box img {
+                width: 100%;
+                height: 150px;
+            }
+
+            .info-box h3 {
+                font-size: 1.5rem;
+            }
+
+            .info-box p {
+                font-size: 1.1rem;
+            }
+
+            .icons-container {
+                gap: 20px;
+            }
+
+            .ca-section h2 {
+                font-size: 2.5rem;
+            }
+
+            .ca-section p {
+                font-size: 1rem;
+                padding: 0 20px;
+            }
+
+            .historical-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .historical-image {
+                width: 150px;
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="container">
+            <div class="hero-image">
+                <img src="STUBBY.JPG" alt="Sergeant Stubby">
+            </div>
+        </div>
+    </section>
+
+    <div class="scrolling-banner">
+        <div class="banner-content">
+            <div class="banner-section">
+                <span class="banner-text">$STUBBY</span>
+                <span class="banner-text">$STUBBY</span>
+                <span class="banner-text">$STUBBY</span>
+                <span class="banner-text">$STUBBY</span>
+                <span class="banner-text">$STUBBY</span>
+            </div>
+            <div class="banner-section">
+                <span class="banner-text">$STUBBY</span>
+                <span class="banner-text">$STUBBY</span>
+                <span class="banner-text">$STUBBY</span>
+                <span class="banner-text">$STUBBY</span>
+                <span class="banner-text">$STUBBY</span>
+            </div>
+        </div>
+    </div>
+
+    <section class="about">
+        <div class="container">
+            <h2>THE FIRST SERGEANT DOG</h2>
+            <p>
+                <strong>Sergeant Stubby was the first dog to be given a military rank in the US Armed Forces</strong>
+            </p>
+        </div>
+    </section>
+
+    <section class="info-boxes">
+        <div class="container">
+            <div class="boxes-container">
+                <div class="info-box">
+                    <img src="STUBBY1.jpg" alt="Sergeant Stubby">
+                    <h3>NAME</h3>
+                    <p>Sergeant Stubby</p>
+                </div>
+                <div class="info-box">
+                    <img src="STUBBY2.jpg" alt="Stubby Supply">
+                    <h3>SUPPLY</h3>
+                    <p>1,000,000,000</p>
+                </div>
+                <div class="info-box">
+                    <img src="STUBBY3.jpg" alt="Stubby Locked">
+                    <h3>LOCKED</h3>
+                    <p>20% Dev wallet locked</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="social-icons">
+        <div class="container">
+            <div class="icons-container">
+                <a href="#" class="social-icon">
+                    <img src="dexs.png" alt="DexScreener">
+                </a>
+                <a href="#" class="social-icon">
+                    <img src="dext.png" alt="DEXTools">
+                </a>
+                <a href="#" class="social-icon">
+                    <img src="tg.png" alt="Telegram">
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="ca-section">
+        <div class="container">
+            <h2>CA</h2>
+            <p>489324723894723987429837</p>
+        </div>
+    </section>
+
+    <section class="about">
+        <div class="container">
+            <h2>ABOUT</h2>
+            <p>
+                <strong>Sergeant Stubby was a stray dog whose heroic service during World War I (1914–18) saved lives and even led to the capture of a German spy</strong>. He was the unofficial mascot for the 102nd Infantry, 26th "Yankee" Division, and is the first dog to be promoted to the rank of sergeant in the U.S. Army.
+            </p>
+        </div>
+    </section>
+
+    <section class="historical-images">
+        <div class="container">
+            <div class="historical-grid">
+                <img src="https://cdn.loc.gov/service/pnp/hec/31000/31070_150px.jpg" alt="Stubby in parade" class="historical-image">
+                <img src="https://cdn.loc.gov/service/pnp/hec/31200/31258_150px.jpg" alt="Stubby with Pershing and Conroy" class="historical-image">
+                <img src="https://cdn.loc.gov/service/pnp/ppmsca/34900/34964_150px.jpg" alt="Historical military photo" class="historical-image">
+            </div>
+        </div>
+    </section>
+</body>
+</html>
