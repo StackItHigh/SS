@@ -22,23 +22,28 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 0px;
+            padding: 0 20px;
         }
 
         /* Main Hero Section */
         .hero {
             display: flex;
             flex-direction: column;
-            justify-content: flex-start;
+            justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 110px 0 0 0;
+            padding: 80px 0 40px 0;
+            min-height: 70vh;
         }
 
         .hero-image {
-            width: 900px;
-            height: 900px;
-            margin-bottom: 0px;
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         @keyframes glow {
@@ -53,6 +58,10 @@
         .hero-image img {
             width: 100%;
             height: auto;
+            max-width: 500px;
+            border-radius: 20px;
+            border: 4px solid #ffd700;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
         }
 
         /* Scrolling Banner */
@@ -60,7 +69,7 @@
             width: 100%;
             overflow: hidden;
             position: relative;
-            padding: 20px 0;
+            padding: 15px 0;
             background: linear-gradient(90deg, #ffd700 0%, #ffed4e 50%, #ffd700 100%);
             border: 3px solid #000;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
@@ -74,7 +83,7 @@
         }
 
         .banner-text {
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: 900;
             color: #000;
             margin-right: 120px;
@@ -94,20 +103,20 @@
 
         /* Main Title Section */
         .main-title {
-            padding: 80px 0 60px 0;
+            padding: 60px 0 40px 0;
             text-align: center;
         }
 
         .main-title h1 {
-            font-size: 5rem;
+            font-size: 4rem;
             font-weight: 900;
             color: #ffd700;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
         }
 
         .main-title p {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: 600;
             color: #ffd700;
             max-width: 800px;
@@ -117,25 +126,28 @@
 
         /* Info Boxes Section */
         .info-boxes {
-            padding: 80px 0;
+            padding: 60px 0;
         }
 
         .boxes-container {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
             max-width: 1000px;
             margin: 0 auto;
+            justify-items: center;
         }
 
         .info-box {
             background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
             border-radius: 25px;
-            padding: 35px;
+            padding: 30px;
             text-align: center;
             border: 3px solid #000;
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: 100%;
+            max-width: 320px;
         }
 
         .info-box:hover {
@@ -145,15 +157,15 @@
 
         .info-box img {
             width: 100%;
-            height: 220px;
+            height: 180px;
             border-radius: 20px;
             object-fit: cover;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             border: 2px solid #000;
         }
 
         .info-box h3 {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 900;
             color: #000;
             margin-bottom: 15px;
@@ -164,12 +176,12 @@
 
         .info-box h3::before {
             content: "⭐";
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             margin-right: 12px;
         }
 
         .info-box p {
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             font-weight: 700;
             color: #000;
             line-height: 1.7;
@@ -187,22 +199,23 @@
 
         /* Social Icons Section */
         .social-icons {
-            padding: 60px 0;
+            padding: 50px 0;
             text-align: center;
         }
 
         .social-title {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 900;
             color: #ffd700;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }
 
         .icons-container {
             display: flex;
             justify-content: center;
-            gap: 40px;
+            gap: 30px;
             align-items: center;
+            flex-wrap: wrap;
         }
 
         .social-icon {
@@ -231,17 +244,17 @@
 
         /* CA Section */
         .ca-section {
-            padding: 80px 0;
+            padding: 60px 0;
             text-align: center;
             background: rgba(0, 0, 0, 0.2);
             border-radius: 30px;
-            margin: 40px 20px;
+            margin: 40px 0;
         }
 
         .ca-section h2 {
-            font-size: 4rem;
+            font-size: 3rem;
             font-weight: 900;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             background: linear-gradient(45deg, #ffd700, #ffed4e);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -249,7 +262,7 @@
         }
 
         .ca-section p {
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             line-height: 1.8;
             max-width: 600px;
             margin: 0 auto;
@@ -263,14 +276,14 @@
 
         /* About Section */
         .about {
-            padding: 80px 0;
+            padding: 60px 0;
             text-align: center;
         }
 
         .about h2 {
-            font-size: 4rem;
+            font-size: 3rem;
             font-weight: 900;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             background: linear-gradient(45deg, #ffd700, #ffed4e);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -278,7 +291,7 @@
         }
 
         .about p {
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             line-height: 1.8;
             max-width: 900px;
             margin: 0 auto;
@@ -296,23 +309,24 @@
 
         /* Historical Images */
         .historical-images {
-            padding: 80px 0;
+            padding: 60px 0 80px 0;
             text-align: center;
         }
 
         .historical-title {
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: 900;
             color: #ffd700;
-            margin-bottom: 50px;
+            margin-bottom: 40px;
         }
 
         .historical-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
+            gap: 25px;
             max-width: 800px;
             margin: 0 auto;
+            justify-items: center;
         }
 
         .historical-image {
@@ -322,7 +336,6 @@
             object-fit: cover;
             border: 4px solid #ffd700;
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-            margin: 0 auto;
             transition: all 0.3s ease;
         }
 
@@ -333,45 +346,84 @@
 
         /* Mobile Responsiveness */
         @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .hero {
+                padding: 40px 0 20px 0;
+                min-height: 60vh;
+            }
+
             .hero-image {
-                width: 450px;
-                height: 450px;
-                margin-bottom: 60px;
+                max-width: 350px;
+                margin-bottom: 30px;
+            }
+
+            .hero-image img {
+                max-width: 350px;
             }
 
             .banner-text {
-                font-size: 2rem;
-                margin-right: 60px;
+                font-size: 1.8rem;
+                margin-right: 80px;
+            }
+
+            .scrolling-banner {
+                padding: 12px 0;
+            }
+
+            .main-title {
+                padding: 40px 0 30px 0;
             }
 
             .main-title h1 {
-                font-size: 3rem;
+                font-size: 2.8rem;
             }
 
             .main-title p {
                 font-size: 1.3rem;
-                padding: 0 20px;
+                padding: 0 10px;
+            }
+
+            .info-boxes {
+                padding: 40px 0;
             }
 
             .boxes-container {
                 grid-template-columns: 1fr;
-                gap: 30px;
+                gap: 25px;
+                padding: 0 10px;
             }
 
             .info-box {
-                padding: 25px;
+                padding: 25px 20px;
+                max-width: 100%;
+            }
+
+            .info-box img {
+                height: 160px;
             }
 
             .info-box h3 {
-                font-size: 1.6rem;
+                font-size: 1.5rem;
             }
 
             .info-box p {
-                font-size: 1.2rem;
+                font-size: 1.1rem;
+            }
+
+            .social-icons {
+                padding: 40px 0;
+            }
+
+            .social-title {
+                font-size: 1.8rem;
+                margin-bottom: 25px;
             }
 
             .icons-container {
-                gap: 25px;
+                gap: 20px;
             }
 
             .social-icon {
@@ -379,28 +431,109 @@
                 height: 60px;
             }
 
-            .ca-section h2, .about h2 {
-                font-size: 2.5rem;
+            .social-icon img {
+                width: 35px;
+                height: 35px;
+            }
+
+            .ca-section {
+                padding: 40px 0;
+                margin: 30px 0;
+            }
+
+            .ca-section h2 {
+                font-size: 2.2rem;
+                margin-bottom: 20px;
             }
 
             .ca-section p {
                 font-size: 1rem;
                 padding: 15px;
+                margin: 0 10px;
+            }
+
+            .about {
+                padding: 40px 0;
+            }
+
+            .about h2 {
+                font-size: 2.2rem;
+                margin-bottom: 25px;
             }
 
             .about p {
-                font-size: 1.3rem;
-                padding: 20px;
+                font-size: 1.2rem;
+                padding: 25px 20px;
+                margin: 0 10px;
+            }
+
+            .historical-images {
+                padding: 40px 0 60px 0;
+            }
+
+            .historical-title {
+                font-size: 2rem;
+                margin-bottom: 30px;
             }
 
             .historical-grid {
                 grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
                 gap: 20px;
+                padding: 0 10px;
             }
 
             .historical-image {
                 width: 150px;
                 height: 150px;
+            }
+        }
+
+        /* Extra small mobile devices */
+        @media (max-width: 480px) {
+            .hero-image {
+                max-width: 280px;
+            }
+
+            .hero-image img {
+                max-width: 280px;
+            }
+
+            .main-title h1 {
+                font-size: 2.2rem;
+            }
+
+            .main-title p {
+                font-size: 1.1rem;
+            }
+
+            .banner-text {
+                font-size: 1.5rem;
+                margin-right: 60px;
+            }
+
+            .info-box {
+                padding: 20px 15px;
+            }
+
+            .info-box img {
+                height: 140px;
+            }
+
+            .ca-section h2, .about h2 {
+                font-size: 1.8rem;
+            }
+
+            .historical-title {
+                font-size: 1.8rem;
+            }
+
+            .historical-grid {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            }
+
+            .historical-image {
+                width: 120px;
+                height: 120px;
             }
         }
     </style>
