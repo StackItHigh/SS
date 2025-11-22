@@ -314,6 +314,7 @@
         .about {
             padding: 60px 0;
             text-align: center;
+            background: url('pepebackground2.png') center center/cover no-repeat;
         }
 
         .about h2 {
@@ -329,7 +330,7 @@
             line-height: 1.8;
             max-width: 900px;
             margin: 0 auto;
-            background: white;
+            background: rgba(255,255,255,0.85);
             color: #b782e0; /* purple paragraph */
             padding: 30px;
             border-radius: 20px;
@@ -379,6 +380,49 @@
         .historical-image:hover {
             transform: scale(1.1) rotate(2deg);
             box-shadow: 0 20px 60px rgba(255, 255, 255, 0.4);
+        }
+
+        /* Mobile Fixes */
+        @media (max-width: 768px) {
+            .hero-logo {
+                width: 90%;
+                margin-bottom: 15px;
+            }
+
+            .hero-image {
+                position: relative;
+                z-index: 2; /* above scrolling banner */
+                width: 100%;
+                margin-bottom: 0;
+            }
+
+            .hero-image img {
+                width: 100%;
+                height: auto;
+            }
+
+            .main-title h1 {
+                font-size: 2.5rem;
+            }
+
+            .main-title p {
+                font-size: 1.2rem;
+            }
+
+            .banner-text {
+                font-size: 1.8rem;
+                margin-right: 40px;
+            }
+
+            .scrolling-banner {
+                padding: 10px 0;
+            }
+
+            .banner-content {
+                display: flex;
+                gap: 20px;
+                animation: scroll 20s linear infinite;
+            }
         }
     </style>
 </head>
@@ -441,8 +485,6 @@
                     <h3>LIQUIDITY</h3>
                     <p><span class="highlight">LP LOCKED</span></p>
                     <p>10% Supply Locked</p>
-                    <p>5% Dev Wallet</p>
-                    <p>5% Marketing Wallet</p>
                 </div>
             </div>
         </div>
@@ -517,4 +559,5 @@
 
 </body>
 </html>
+
 
