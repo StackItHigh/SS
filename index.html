@@ -1,28 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BASED MOG</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>MON PEPE</title>
+
+    <!-- Load Anton -->
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+
     <style>
+        /* Reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html, body {
+            height: 100%;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            background: #073bdb;
+            font-family: 'Anton', sans-serif;
+            background: #b782e0;
             color: white;
             overflow-x: hidden;
             min-height: 100vh;
+            margin: 0;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+        }
+
+        /* Raining Pepe Heads */
+        #pepe-rain {
+            pointer-events: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 9999;
+        }
+
+        .pepe-drop {
+            position: fixed;
+            top: -100px; 
+            pointer-events: none;
+            width: 50px;
+            height: auto;
+            animation-name: fall;
+            animation-timing-function: linear;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(110vh) rotate(360deg);
+                opacity: 0.8;
+            }
         }
 
         /* Main Hero Section */
@@ -32,36 +75,31 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 80px 0 40px 0;
+            padding: 80px 0 40px;
             min-height: 70vh;
         }
 
-        .hero-image {
-            width: 100%;
-            max-width: 500px;
+        .hero-logo {
+            width: 1111px;
             height: auto;
-            margin-bottom: 40px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            display: block;
+            margin: 0 auto 20px auto;
         }
 
-        @keyframes glow {
-            from {
-                box-shadow: 0 25px 80px rgba(255, 215, 0, 0.3);
-            }
-            to {
-                box-shadow: 0 25px 80px rgba(255, 215, 0, 0.6);
-            }
+        .hero-image {
+            width: 122%;
+            max-width: none;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            margin-bottom: -62px;
         }
 
         .hero-image img {
-            width: 100%;
+            width: auto;
             height: auto;
-            max-width: 500px;
-            border-radius: 20px;
-            border: 4px solid #ffd700;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 100%;
+            display: block;
         }
 
         /* Scrolling Banner */
@@ -70,13 +108,13 @@
             overflow: hidden;
             position: relative;
             padding: 15px 0;
-            background: linear-gradient(90deg, #ffd700 0%, #ffed4e 50%, #ffd700 100%);
+            background: white;
             border: 3px solid #000;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
 
         .banner-content {
-            display: flex;
+            display: inline-flex;
             animation: scroll 25s linear infinite;
             white-space: nowrap;
             align-items: center;
@@ -85,46 +123,44 @@
         .banner-text {
             font-size: 2.5rem;
             font-weight: 900;
-            color: #000;
+            color: #b782e0; /* purple text */
             margin-right: 120px;
             text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.3);
             flex-shrink: 0;
-            font-family: Arial, sans-serif;
+            font-family: 'Anton', sans-serif;
         }
 
         @keyframes scroll {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(-50%);
-            }
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
 
         /* Main Title Section */
         .main-title {
-            padding: 60px 0 40px 0;
+            padding: 60px 0 40px;
             text-align: center;
         }
 
         .main-title h1 {
             font-size: 4rem;
             font-weight: 900;
-            color: #ffd700;
+            color: #ffffff;
             margin-bottom: 20px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
+            font-family: 'Anton', sans-serif;
         }
 
         .main-title p {
             font-size: 1.6rem;
             font-weight: 600;
-            color: #ffd700;
+            color: #ffffff;
             max-width: 800px;
             margin: 0 auto;
             line-height: 1.6;
+            font-family: 'Anton', sans-serif;
         }
 
-        /* Info Boxes Section */
+        /* Info Boxes */
         .info-boxes {
             padding: 60px 0;
         }
@@ -139,7 +175,7 @@
         }
 
         .info-box {
-            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            background: white;
             border-radius: 25px;
             padding: 30px;
             text-align: center;
@@ -148,6 +184,8 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             width: 100%;
             max-width: 320px;
+            font-family: 'Anton', sans-serif;
+            color: #b782e0;
         }
 
         .info-box:hover {
@@ -162,12 +200,13 @@
             object-fit: cover;
             margin-bottom: 20px;
             border: 2px solid #000;
+            display: block;
         }
 
         .info-box h3 {
             font-size: 1.8rem;
             font-weight: 900;
-            color: #000;
+            color: #b782e0; /* purple text */
             margin-bottom: 15px;
             display: flex;
             align-items: center;
@@ -183,21 +222,20 @@
         .info-box p {
             font-size: 1.2rem;
             font-weight: 700;
-            color: #000;
             line-height: 1.7;
             margin-bottom: 8px;
         }
 
         .info-box .highlight {
-            background: #000;
-            color: #ffd700;
+            background: #b782e0;
+            color: #ffffff;
             padding: 5px 10px;
             border-radius: 10px;
             display: inline-block;
             margin: 5px;
         }
 
-        /* Social Icons Section */
+        /* Social Icons */
         .social-icons {
             padding: 50px 0;
             text-align: center;
@@ -206,8 +244,9 @@
         .social-title {
             font-size: 2rem;
             font-weight: 900;
-            color: #ffd700;
+            color: #ffffff;
             margin-bottom: 30px;
+            font-family: 'Anton', sans-serif;
         }
 
         .icons-container {
@@ -221,7 +260,7 @@
         .social-icon {
             width: 70px;
             height: 70px;
-            background: #ffd700;
+            background: #ffffff;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -233,32 +272,28 @@
 
         .social-icon:hover {
             transform: scale(1.2) rotate(5deg);
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.5);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.5);
         }
 
         .social-icon img {
             width: 40px;
             height: 40px;
             object-fit: contain;
+            display: block;
         }
 
         /* CA Section */
         .ca-section {
             padding: 60px 0;
             text-align: center;
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 30px;
-            margin: 40px 0;
         }
 
         .ca-section h2 {
             font-size: 3rem;
             font-weight: 900;
             margin-bottom: 25px;
-            background: linear-gradient(45deg, #ffd700, #ffed4e);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-family: 'Anton', sans-serif;
+            color: #ffffff; /* white heading */
         }
 
         .ca-section p {
@@ -266,12 +301,13 @@
             line-height: 1.8;
             max-width: 600px;
             margin: 0 auto;
-            color: #ffd700;
-            word-break: break-all;
-            background: #000;
+            background: white;
+            color: #b782e0; /* purple paragraph */
             padding: 20px;
             border-radius: 15px;
-            border: 2px solid #ffd700;
+            border: 2px solid #b782e0;
+            word-break: break-all;
+            font-family: 'Anton', sans-serif;
         }
 
         /* About Section */
@@ -284,10 +320,8 @@
             font-size: 3rem;
             font-weight: 900;
             margin-bottom: 30px;
-            background: linear-gradient(45deg, #ffd700, #ffed4e);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-family: 'Anton', sans-serif;
+            color: #ffffff; /* white heading */
         }
 
         .about p {
@@ -295,15 +329,16 @@
             line-height: 1.8;
             max-width: 900px;
             margin: 0 auto;
-            color: white;
-            background: rgba(255, 215, 0, 0.1);
+            background: white;
+            color: #b782e0; /* purple paragraph */
             padding: 30px;
             border-radius: 20px;
-            border: 2px solid #ffd700;
+            border: 2px solid #b782e0;
+            font-family: 'Anton', sans-serif;
         }
 
         .about strong {
-            color: #ffd700;
+            color: #b782e0;
             font-weight: 900;
         }
 
@@ -316,8 +351,9 @@
         .historical-title {
             font-size: 2.5rem;
             font-weight: 900;
-            color: #ffd700;
+            color: white;
             margin-bottom: 40px;
+            font-family: 'Anton', sans-serif;
         }
 
         .historical-grid {
@@ -334,248 +370,52 @@
             height: 200px;
             border-radius: 20px;
             object-fit: cover;
-            border: 4px solid #ffd700;
+            border: 4px solid white;
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
             transition: all 0.3s ease;
+            display: block;
         }
 
         .historical-image:hover {
             transform: scale(1.1) rotate(2deg);
-            box-shadow: 0 20px 60px rgba(255, 215, 0, 0.4);
-        }
-
-        /* Mobile Responsiveness */
-        @media (max-width: 768px) {
-            .container {
-                padding: 0 15px;
-            }
-
-            .hero {
-                padding: 40px 0 20px 0;
-                min-height: 60vh;
-            }
-
-            .hero-image {
-                max-width: 350px;
-                margin-bottom: 30px;
-            }
-
-            .hero-image img {
-                max-width: 350px;
-            }
-
-            .banner-text {
-                font-size: 1.8rem;
-                margin-right: 80px;
-            }
-
-            .scrolling-banner {
-                padding: 12px 0;
-            }
-
-            .main-title {
-                padding: 40px 0 30px 0;
-            }
-
-            .main-title h1 {
-                font-size: 2.8rem;
-            }
-
-            .main-title p {
-                font-size: 1.3rem;
-                padding: 0 10px;
-            }
-
-            .info-boxes {
-                padding: 40px 0;
-            }
-
-            .boxes-container {
-                grid-template-columns: 1fr;
-                gap: 25px;
-                padding: 0 10px;
-            }
-
-            .info-box {
-                padding: 25px 20px;
-                max-width: 100%;
-            }
-
-            .info-box img {
-                height: 160px;
-            }
-
-            .info-box h3 {
-                font-size: 1.5rem;
-            }
-
-            .info-box p {
-                font-size: 1.1rem;
-            }
-
-            .social-icons {
-                padding: 40px 0;
-            }
-
-            .social-title {
-                font-size: 1.8rem;
-                margin-bottom: 25px;
-            }
-
-            .icons-container {
-                gap: 20px;
-            }
-
-            .social-icon {
-                width: 60px;
-                height: 60px;
-            }
-
-            .social-icon img {
-                width: 35px;
-                height: 35px;
-            }
-
-            .ca-section {
-                padding: 40px 0;
-                margin: 30px 0;
-            }
-
-            .ca-section h2 {
-                font-size: 2.2rem;
-                margin-bottom: 20px;
-            }
-
-            .ca-section p {
-                font-size: 1rem;
-                padding: 15px;
-                margin: 0 10px;
-            }
-
-            .about {
-                padding: 40px 0;
-            }
-
-            .about h2 {
-                font-size: 2.2rem;
-                margin-bottom: 25px;
-            }
-
-            .about p {
-                font-size: 1.2rem;
-                padding: 25px 20px;
-                margin: 0 10px;
-            }
-
-            .historical-images {
-                padding: 40px 0 60px 0;
-            }
-
-            .historical-title {
-                font-size: 2rem;
-                margin-bottom: 30px;
-            }
-
-            .historical-grid {
-                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-                gap: 20px;
-                padding: 0 10px;
-            }
-
-            .historical-image {
-                width: 150px;
-                height: 150px;
-            }
-        }
-
-        /* Extra small mobile devices */
-        @media (max-width: 480px) {
-            .hero-image {
-                max-width: 280px;
-            }
-
-            .hero-image img {
-                max-width: 280px;
-            }
-
-            .main-title h1 {
-                font-size: 2.2rem;
-            }
-
-            .main-title p {
-                font-size: 1.1rem;
-            }
-
-            .banner-text {
-                font-size: 1.5rem;
-                margin-right: 60px;
-            }
-
-            .info-box {
-                padding: 20px 15px;
-            }
-
-            .info-box img {
-                height: 140px;
-            }
-
-            .ca-section h2, .about h2 {
-                font-size: 1.8rem;
-            }
-
-            .historical-title {
-                font-size: 1.8rem;
-            }
-
-            .historical-grid {
-                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            }
-
-            .historical-image {
-                width: 120px;
-                height: 120px;
-            }
+            box-shadow: 0 20px 60px rgba(255, 255, 255, 0.4);
         }
     </style>
 </head>
+
 <body>
+
+    <!-- Raining Pepe Heads -->
+    <div id="pepe-rain"></div>
+
     <section class="hero">
         <div class="container">
+            <img src="monpepelogo.png" alt="Mon Pepe Logo" class="hero-logo">
             <div class="hero-image">
-                <img src="MOG.jpg" alt="Based MOG">
+                <img src="PEPE.jpg" alt="Mon Pepe">
             </div>
         </div>
     </section>
 
     <div class="scrolling-banner">
         <div class="banner-content">
-            <span class="banner-text">$MOG</span>
-            <span class="banner-text">$MOG</span>
-            <span class="banner-text">$MOG</span>
-            <span class="banner-text">$MOG</span>
-            <span class="banner-text">$MOG</span>
-            <span class="banner-text">$MOG</span>
-            <span class="banner-text">$MOG</span>
-            <span class="banner-text">$MOG</span>
-            <span class="banner-text">$MOG</span>
-            <span class="banner-text">$MOG</span>
-            <span class="banner-text">$MOG</span>
-            <span class="banner-text">$MOG</span>
-            <span class="banner-text">$MOG</span>
-            <span class="banner-text">$MOG</span>
-            <span class="banner-text">$MOG</span>
-            <span class="banner-text">$MOG</span>
-            <span class="banner-text">$MOG</span>
-            <span class="banner-text">$MOG</span>
-            <span class="banner-text">$MOG</span>
-            <span class="banner-text">$MOG</span>
+            <span class="banner-text">$PEPE</span>
+            <span class="banner-text">$PEPE</span>
+            <span class="banner-text">$PEPE</span>
+            <span class="banner-text">$PEPE</span>
+            <span class="banner-text">$PEPE</span>
+            <span class="banner-text">$PEPE</span>
+            <span class="banner-text">$PEPE</span>
+            <span class="banner-text">$PEPE</span>
+            <span class="banner-text">$PEPE</span>
+            <span class="banner-text">$PEPE</span>
         </div>
     </div>
 
     <section class="main-title">
         <div class="container">
-            <h1>BASED MOG</h1>
-            <p>Mog but BASED.</p>
+            <h1>MON PEPE</h1>
+            <p>Pepe but Monadized.</p>
         </div>
     </section>
 
@@ -583,41 +423,42 @@
         <div class="container">
             <div class="boxes-container">
                 <div class="info-box">
-                    <img src="MOG1.jpg" alt="Based MOG Token">
+                    <img src="PEPE1.jpg" alt="Mon Pepe Token">
                     <h3>TOKEN</h3>
-                    <p><span class="highlight">$MOG</span></p>
-                    <p>Launched on Base</p>
+                    <p><span class="highlight">$MONPEPE</span></p>
+                    <p>Based on Mon Network</p>
                 </div>
+
                 <div class="info-box">
-                    <img src="MOG2.jpg" alt="MOG Supply">
+                    <img src="PEPE2.jpg" alt="Mon Pepe Supply">
                     <h3>SUPPLY</h3>
                     <p><span class="highlight">1,000,000,000</span></p>
                     <p>Total Maximum Supply</p>
                 </div>
+
                 <div class="info-box">
-                    <img src="MOG3.jpg" alt="MOG Liquidity">
+                    <img src="PEPE3.jpg" alt="Mon Pepe Liquidity">
                     <h3>LIQUIDITY</h3>
                     <p><span class="highlight">LP LOCKED</span></p>
-                    <p>19% Supply Locked</p>
+                    <p>10% Supply Locked</p>
                     <p>5% Dev Wallet</p>
-                    <p>10% Marketing Wallet</p>
-                     <p>5% Airdrops</p> 
-                     <p>5% Kols & Marketing</p>
+                    <p>5% Marketing Wallet</p>
+                </div>
             </div>
         </div>
     </section>
 
     <section class="social-icons">
         <div class="container">
-            <h3 class="social-title">JOIN THE MOG COMMUNITY</h3>
+            <h3 class="social-title">JOIN THE MON PEPE COMMUNITY</h3>
             <div class="icons-container">
-                <a href="https://dexscreener.com/base/0x0b0ff813dbed94745b18f86a3fb8bf051c661c2e" class="social-icon">
+                <a href="#" class="social-icon">
                     <img src="dexs.png" alt="DexScreener">
                 </a>
-                <a href="https://www.dextools.io/app/en/base/pair-explorer/0x0b0ff813dbed94745b18f86a3fb8bf051c661c2e?t=1753441534406" class="social-icon">
+                <a href="#" class="social-icon">
                     <img src="dext.png" alt="DEXTools">
                 </a>
-                <a href="https://t.me/mogonbasechain" class="social-icon">
+                <a href="#" class="social-icon">
                     <img src="tg.png" alt="Telegram">
                 </a>
             </div>
@@ -627,31 +468,52 @@
     <section class="ca-section">
         <div class="container">
             <h2>CONTRACT ADDRESS</h2>
-            <p>0x30c1D9b1cbD5590D6dA01069a331E110482a8a91</p>
+            <p>489324723894723987429837</p>
         </div>
     </section>
 
     <section class="about">
         <div class="container">
-            <h2>ABOUT BASED MOG</h2>
+            <h2>ABOUT MON PEPE</h2>
             <p>
-                <strong>Based MOG</strong> is the ultimate meme coin experience built on the Base network. 
-                Combining the power of community-driven tokenomics with the speed and efficiency of Base, 
-                MOG represents the next evolution in meme coin culture. Join the movement and become part of 
-                the <strong>Based MOG</strong> family today!
+                <strong>Mon PEPE</strong> is the ultimate meme coin experience built on the MON network. 
+                Combining the power of community-driven tokenomics with the speed and efficiency of MONAD,
+                MON PEPE represents the next evolution in meme coin culture.
+                Join the movement and become part of the <strong>MON PEPE</strong> family today!
             </p>
         </div>
     </section>
 
     <section class="historical-images">
         <div class="container">
-            <h3 class="historical-title">MOG GALLERY</h3>
+            <h3 class="historical-title">MON PEPE GALLERY</h3>
             <div class="historical-grid">
-                <img src="MOG4.jpg" alt="MOG Community" class="historical-image">
-                <img src="MOG1.jpg" alt="MOG Token" class="historical-image">
-                <img src="MOG2.jpg" alt="MOG Base" class="historical-image">
+                <img src="PEPE4.PNG" alt="Mon Pepe Community" class="historical-image">
+                <img src="PEPE5.JPG" alt="Mon Pepe Token" class="historical-image">
+                <img src="PEPE6.PNG" alt="Mon Pepe Base" class="historical-image">
             </div>
         </div>
     </section>
+
+    <script>
+        const rainContainer = document.getElementById('pepe-rain');
+        const totalDrops = 30;
+
+        for (let i = 0; i < totalDrops; i++) {
+            const drop = document.createElement('img');
+            drop.src = 'pepehead.png';
+            drop.classList.add('pepe-drop');
+
+            drop.style.left = Math.random() * window.innerWidth + 'px';
+            const size = 30 + Math.random() * 40;
+            drop.style.width = size + 'px';
+            drop.style.height = 'auto';
+            drop.style.animationDuration = 3 + Math.random() * 5 + 's';
+            drop.style.animationDelay = Math.random() * 5 + 's';
+
+            rainContainer.appendChild(drop);
+        }
+    </script>
+
 </body>
 </html>
