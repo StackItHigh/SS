@@ -1,528 +1,923 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>MON PEPE</title>
-
-    <!-- Load Anton -->
-    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MON PEPE | Monadized Revolution</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    
     <style>
-        /* Reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        html, body {
-            height: 100%;
+        :root {
+            --purple-dark: #1a0033;
+            --purple-mid: #5200a3;
+            --purple-bright: #8b00ff;
+            --purple-glow: #b366ff;
+            --black: #000000;
+            --white: #ffffff;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: 'Anton', sans-serif;
-            background: #b782e0;
-            color: white;
+            font-family: 'Inter', sans-serif;
+            background: var(--black);
+            color: var(--white);
             overflow-x: hidden;
-            min-height: 100vh;
-            margin: 0;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Raining Pepe Heads */
-        #pepe-rain {
-            pointer-events: none;
+        /* Animated Background */
+        .bg-wrapper {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            overflow: hidden;
-            z-index: 9999;
+            z-index: 0;
+            background: linear-gradient(180deg, var(--black) 0%, var(--purple-dark) 50%, var(--black) 100%);
         }
 
-        .pepe-drop {
+        .stars {
             position: fixed;
-            top: -100px; 
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             pointer-events: none;
-            width: 50px;
-            height: auto;
-            animation-name: fall;
-            animation-timing-function: linear;
         }
 
-        @keyframes fall {
-            0% {
-                transform: translateY(-100px) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(110vh) rotate(360deg);
-                opacity: 0.8;
-            }
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--white);
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
         }
 
-        /* Main Hero Section */
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        /* Main Container */
+        .container {
+            position: relative;
+            z-index: 10;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* Navigation */
+        nav {
+            padding: 30px 0;
+            position: sticky;
+            top: 0;
+            backdrop-filter: blur(20px);
+            background: rgba(0, 0, 0, 0.8);
+            border-bottom: 2px solid var(--purple-bright);
+            z-index: 1000;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .nav-logo-small {
+            height: 50px;
+            filter: drop-shadow(0 0 20px var(--purple-bright));
+            transition: transform 0.3s ease;
+        }
+
+        .nav-logo-small:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--purple-bright);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--purple-glow);
+        }
+
+        .nav-links a:hover::before {
+            width: 100%;
+        }
+
+        /* Hero Section */
         .hero {
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            text-align: center;
-            padding: 80px 0 40px;
-            min-height: 70vh;
+            padding: 100px 0 50px;
+            position: relative;
+        }
+
+        /* Animated Logo Container */
+        .logo-container {
+            perspective: 1000px;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .logo-wrapper {
+            position: relative;
+            display: inline-block;
         }
 
         .hero-logo {
-            width: 1111px;
-            height: auto;
-            display: block;
-            margin: 0 auto 20px auto;
-        }
-
-        .hero-image {
-            width: 122%;
-            max-width: none;
-            height: auto;
-            display: block;
-            margin: 0 auto;
-            margin-bottom: -62px;
-        }
-
-        .hero-image img {
-            width: auto;
-            height: auto;
-            max-width: 100%;
-            display: block;
-        }
-
-        /* Scrolling Banner */
-        .scrolling-banner {
             width: 100%;
-            overflow: hidden;
+            max-width: 900px;
+            height: auto;
             position: relative;
-            padding: 15px 0;
-            background: white;
-            border: 3px solid #000;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            z-index: 2;
+            animation: floatLogo 6s ease-in-out infinite;
+            filter: drop-shadow(0 0 50px var(--purple-bright));
         }
 
-        .banner-content {
-            display: inline-flex;
-            animation: scroll 25s linear infinite;
-            white-space: nowrap;
-            align-items: center;
+        /* Glowing ring behind logo */
+        .logo-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120%;
+            height: 120%;
+            background: radial-gradient(circle, var(--purple-bright) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: pulseGlow 3s ease-in-out infinite;
+            z-index: 1;
+            opacity: 0.6;
         }
 
-        .banner-text {
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: #b782e0; /* purple text */
-            margin-right: 120px;
-            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.3);
-            flex-shrink: 0;
-            font-family: 'Anton', sans-serif;
+        @keyframes floatLogo {
+            0%, 100% {
+                transform: translateY(0px) rotateZ(0deg);
+            }
+            25% {
+                transform: translateY(-20px) rotateZ(2deg);
+            }
+            50% {
+                transform: translateY(-10px) rotateZ(0deg);
+            }
+            75% {
+                transform: translateY(-20px) rotateZ(-2deg);
+            }
         }
 
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+        @keyframes pulseGlow {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.6;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.2);
+                opacity: 0.4;
+            }
         }
 
-        /* Main Title Section */
-        .main-title {
-            padding: 60px 0 40px;
-            text-align: center;
+        /* Main Image Container with 3D Effects */
+        .main-image-container {
+            perspective: 1500px;
+            margin-bottom: 60px;
+            position: relative;
         }
 
-        .main-title h1 {
-            font-size: 4rem;
-            font-weight: 900;
-            color: #ffffff;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
-            font-family: 'Anton', sans-serif;
-        }
-
-        .main-title p {
-            font-size: 1.6rem;
-            font-weight: 600;
-            color: #ffffff;
-            max-width: 800px;
-            margin: 0 auto;
-            line-height: 1.6;
-            font-family: 'Anton', sans-serif;
-        }
-
-        /* Info Boxes */
-        .info-boxes {
-            padding: 60px 0;
-        }
-
-        .boxes-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            max-width: 1000px;
-            margin: 0 auto;
-            justify-items: center;
-        }
-
-        .info-box {
-            background: white;
-            border-radius: 25px;
-            padding: 30px;
-            text-align: center;
-            border: 3px solid #000;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            width: 100%;
-            max-width: 320px;
-            font-family: 'Anton', sans-serif;
-            color: #b782e0;
-        }
-
-        .info-box:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
-        }
-
-        .info-box img {
-            width: 100%;
-            height: 180px;
-            border-radius: 20px;
-            object-fit: cover;
-            margin-bottom: 20px;
-            border: 2px solid #000;
-            display: block;
-        }
-
-        .info-box h3 {
-            font-size: 1.8rem;
-            font-weight: 900;
-            color: #b782e0; /* purple text */
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .info-box h3::before {
-            content: "⭐";
-            font-size: 1.6rem;
-            margin-right: 12px;
-        }
-
-        .info-box p {
-            font-size: 1.2rem;
-            font-weight: 700;
-            line-height: 1.7;
-            margin-bottom: 8px;
-        }
-
-        .info-box .highlight {
-            background: #b782e0;
-            color: #ffffff;
-            padding: 5px 10px;
-            border-radius: 10px;
+        .image-wrapper {
+            position: relative;
             display: inline-block;
-            margin: 5px;
+            transform-style: preserve-3d;
         }
 
-        /* Social Icons */
-        .social-icons {
-            padding: 50px 0;
+        .hero-main-image {
+            width: 100%;
+            max-width: 700px;
+            height: auto;
+            border-radius: 30px;
+            border: 4px solid var(--purple-bright);
+            box-shadow: 
+                0 0 60px var(--purple-bright),
+                inset 0 0 30px rgba(139, 0, 255, 0.3);
+            animation: float3D 8s ease-in-out infinite;
+            position: relative;
+            z-index: 2;
+            transition: transform 0.3s ease;
+        }
+
+        /* Animated border effect */
+        .image-border {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border-radius: 35px;
+            background: linear-gradient(45deg, 
+                var(--purple-bright), 
+                var(--white), 
+                var(--purple-bright),
+                var(--white));
+            background-size: 400% 400%;
+            animation: gradientShift 4s ease infinite;
+            z-index: 1;
+            opacity: 0.5;
+        }
+
+        @keyframes float3D {
+            0%, 100% {
+                transform: translateY(0px) rotateX(0deg) rotateY(0deg);
+            }
+            25% {
+                transform: translateY(-30px) rotateX(5deg) rotateY(-5deg);
+            }
+            50% {
+                transform: translateY(-15px) rotateX(0deg) rotateY(0deg);
+            }
+            75% {
+                transform: translateY(-30px) rotateX(-5deg) rotateY(5deg);
+            }
+        }
+
+        @keyframes gradientShift {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        /* Hover effect for main image */
+        .image-wrapper:hover .hero-main-image {
+            transform: scale(1.05) rotateY(10deg);
+            box-shadow: 
+                0 0 100px var(--purple-bright),
+                inset 0 0 50px rgba(139, 0, 255, 0.5);
+        }
+
+        /* Floating particles around image */
+        .particle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: var(--purple-bright);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: floatParticle 6s ease-in-out infinite;
+            box-shadow: 0 0 20px var(--purple-bright);
+        }
+
+        .particle:nth-child(1) {
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .particle:nth-child(2) {
+            top: 20%;
+            right: 10%;
+            animation-delay: 1s;
+        }
+
+        .particle:nth-child(3) {
+            bottom: 15%;
+            left: 8%;
+            animation-delay: 2s;
+        }
+
+        .particle:nth-child(4) {
+            bottom: 25%;
+            right: 5%;
+            animation-delay: 3s;
+        }
+
+        @keyframes floatParticle {
+            0%, 100% {
+                transform: translateY(0px) scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(-40px) scale(1.5);
+                opacity: 0.5;
+            }
+        }
+
+        /* Hero Text */
+        .hero-title {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 4rem;
             text-align: center;
-        }
-
-        .social-title {
-            font-size: 2rem;
-            font-weight: 900;
-            color: #ffffff;
             margin-bottom: 30px;
-            font-family: 'Anton', sans-serif;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, var(--white), var(--purple-glow), var(--white));
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s linear infinite;
+            text-shadow: 0 0 80px var(--purple-bright);
         }
 
-        .icons-container {
+        @keyframes shimmer {
+            0% {
+                background-position: 0% center;
+            }
+            100% {
+                background-position: 200% center;
+            }
+        }
+
+        .hero-subtitle {
+            font-size: 1.8rem;
+            text-align: center;
+            color: var(--purple-glow);
+            max-width: 700px;
+            margin: 0 auto 50px;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        /* CTA Buttons */
+        .cta-buttons {
             display: flex;
-            justify-content: center;
             gap: 30px;
-            align-items: center;
+            justify-content: center;
             flex-wrap: wrap;
         }
 
-        .social-icon {
-            width: 70px;
-            height: 70px;
-            background: #ffffff;
+        .cta-btn {
+            padding: 18px 45px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-primary {
+            background: var(--purple-bright);
+            color: var(--white);
+            border: 2px solid var(--purple-bright);
+            box-shadow: 0 0 30px var(--purple-bright);
+        }
+
+        .cta-primary:hover {
+            background: var(--white);
+            color: var(--purple-bright);
+            box-shadow: 0 0 50px var(--white);
+            transform: translateY(-5px);
+        }
+
+        .cta-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .cta-secondary:hover {
+            background: var(--white);
+            color: var(--black);
+            box-shadow: 0 0 30px var(--white);
+            transform: translateY(-5px);
+        }
+
+        /* Scrolling Ticker */
+        .ticker {
+            width: 100%;
+            overflow: hidden;
+            background: var(--purple-bright);
+            padding: 25px 0;
+            border-top: 3px solid var(--white);
+            border-bottom: 3px solid var(--white);
+            margin: 80px 0;
+        }
+
+        .ticker-content {
+            display: flex;
+            animation: scroll 30s linear infinite;
+            white-space: nowrap;
+        }
+
+        .ticker-item {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 2.5rem;
+            color: var(--white);
+            margin: 0 100px;
+            text-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* Info Cards Section */
+        .info-section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 80px;
+            color: var(--white);
+            text-shadow: 0 0 30px var(--purple-bright);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .info-card {
+            background: linear-gradient(135deg, rgba(26, 0, 51, 0.9), rgba(82, 0, 163, 0.3));
+            border: 3px solid var(--purple-bright);
+            border-radius: 30px;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(139, 0, 255, 0.3) 0%, transparent 70%);
+            animation: rotate 10s linear infinite;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .info-card:hover::before {
+            opacity: 1;
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes shine {
+            0% {
+                left: -100%;
+            }
+            100% {
+                left: 100%;
+            }
+        }
+
+        .info-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 60px var(--purple-bright);
+            border-color: var(--white);
+        }
+
+        .info-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            border: 2px solid var(--purple-bright);
+            transition: transform 0.4s ease;
+        }
+
+        .info-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .info-card h3 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1.5rem;
+            color: var(--purple-glow);
+            margin-bottom: 20px;
+        }
+
+        .info-value {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--white);
+            margin-bottom: 15px;
+        }
+
+        .info-desc {
+            font-size: 1.1rem;
+            color: var(--white);
+            opacity: 0.8;
+        }
+
+        /* Contract Section */
+        .contract-section {
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .contract-box {
+            background: linear-gradient(135deg, rgba(26, 0, 51, 0.9), rgba(82, 0, 163, 0.3));
+            border: 4px solid var(--purple-bright);
+            border-radius: 25px;
+            padding: 50px;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contract-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            animation: shine 3s infinite;
+        }
+
+        .contract-address {
+            font-family: 'Courier New', monospace;
+            font-size: 1.3rem;
+            color: var(--white);
+            word-break: break-all;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            border: 2px solid var(--purple-bright);
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 100px 0;
+            background: url('pepebackground2.png') center/cover no-repeat;
+            position: relative;
+        }
+
+        .about-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .about-section .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-text {
+            font-size: 1.4rem;
+            line-height: 2;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+            background: rgba(26, 0, 51, 0.8);
+            padding: 60px;
+            border-radius: 30px;
+            border: 3px solid var(--purple-bright);
+            backdrop-filter: blur(10px);
+        }
+
+        .about-text strong {
+            color: var(--purple-glow);
+        }
+
+        /* Gallery Section */
+        .gallery-section {
+            padding: 100px 0;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 25px;
+            overflow: hidden;
+            border: 4px solid var(--purple-bright);
+            aspect-ratio: 1;
+            transition: all 0.4s ease;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--purple-bright) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 60px var(--purple-bright);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item:hover::after {
+            opacity: 0.5;
+        }
+
+        /* Social Section */
+        .social-section {
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .social-grid {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+            margin-top: 60px;
+        }
+
+        .social-link {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, var(--purple-dark), var(--purple-mid));
+            border: 4px solid var(--purple-bright);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s ease;
-            border: 3px solid #000;
-            text-decoration: none;
+            transition: all 0.4s ease;
+            position: relative;
         }
 
-        .social-icon:hover {
-            transform: scale(1.2) rotate(5deg);
-            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.5);
+        .social-link::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: var(--white);
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
 
-        .social-icon img {
-            width: 40px;
-            height: 40px;
-            object-fit: contain;
-            display: block;
+        .social-link:hover {
+            transform: translateY(-15px) rotate(360deg);
+            box-shadow: 0 20px 60px var(--purple-bright);
         }
 
-        /* CA Section */
-        .ca-section {
-            padding: 60px 0;
-            text-align: center;
+        .social-link:hover::before {
+            opacity: 0.1;
         }
 
-        .ca-section h2 {
-            font-size: 3rem;
-            font-weight: 900;
-            margin-bottom: 25px;
-            font-family: 'Anton', sans-serif;
-            color: #ffffff; /* white heading */
+        .social-link img {
+            width: 60px;
+            height: 60px;
+            position: relative;
+            z-index: 1;
         }
 
-        .ca-section p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            max-width: 600px;
-            margin: 0 auto;
-            background: white;
-            color: #b782e0; /* purple paragraph */
-            padding: 20px;
-            border-radius: 15px;
-            border: 2px solid #b782e0;
-            word-break: break-all;
-            font-family: 'Anton', sans-serif;
-        }
-
-        /* About Section */
-        .about {
-            padding: 60px 0;
-            text-align: center;
-            background: url('pepebackground2.png') center center/cover no-repeat;
-        }
-
-        .about h2 {
-            font-size: 3rem;
-            font-weight: 900;
-            margin-bottom: 30px;
-            font-family: 'Anton', sans-serif;
-            color: #ffffff; /* white heading */
-        }
-
-        .about p {
-            font-size: 1.4rem;
-            line-height: 1.8;
-            max-width: 900px;
-            margin: 0 auto;
-            background: rgba(255,255,255,0.85);
-            color: #b782e0; /* purple paragraph */
-            padding: 30px;
-            border-radius: 20px;
-            border: 2px solid #b782e0;
-            font-family: 'Anton', sans-serif;
-        }
-
-        .about strong {
-            color: #b782e0;
-            font-weight: 900;
-        }
-
-        /* Historical Images */
-        .historical-images {
-            padding: 60px 0 80px 0;
-            text-align: center;
-        }
-
-        .historical-title {
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: white;
-            margin-bottom: 40px;
-            font-family: 'Anton', sans-serif;
-        }
-
-        .historical-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 25px;
-            max-width: 800px;
-            margin: 0 auto;
-            justify-items: center;
-        }
-
-        .historical-image {
-            width: 200px;
-            height: 200px;
-            border-radius: 20px;
-            object-fit: cover;
-            border: 4px solid white;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
-            display: block;
-        }
-
-        .historical-image:hover {
-            transform: scale(1.1) rotate(2deg);
-            box-shadow: 0 20px 60px rgba(255, 255, 255, 0.4);
-        }
-
-        /* Mobile Fixes */
+        /* Mobile Responsive */
         @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+
             .hero-logo {
-                width: 90%;
-                margin-bottom: 15px;
+                max-width: 90%;
             }
 
-            .hero-image {
-                position: relative;
-                z-index: 2; /* above scrolling banner */
-                width: 100%;
-                margin-bottom: 0;
+            .hero-main-image {
+                max-width: 90%;
             }
 
-            .hero-image img {
-                width: 100%;
-                height: auto;
+            .hero-title {
+                font-size: 2rem;
             }
 
-            .main-title h1 {
-                font-size: 2.5rem;
-            }
-
-            .main-title p {
+            .hero-subtitle {
                 font-size: 1.2rem;
             }
 
-            .banner-text {
-                font-size: 1.8rem;
-                margin-right: 40px;
+            .section-title {
+                font-size: 2rem;
             }
 
-            .scrolling-banner {
-                padding: 10px 0;
+            .nav-links {
+                display: none;
             }
 
-            .banner-content {
-                display: flex;
-                gap: 20px;
-                animation: scroll 20s linear infinite;
+            .ticker-item {
+                font-size: 1.5rem;
+                margin: 0 50px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .about-text {
+                padding: 30px;
+                font-size: 1.1rem;
             }
         }
     </style>
 </head>
-
 <body>
+    <!-- Background -->
+    <div class="bg-wrapper">
+        <div class="stars" id="stars"></div>
+    </div>
 
-    <!-- Raining Pepe Heads -->
-    <div id="pepe-rain"></div>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-content">
+            <img src="monpepelogo.png" alt="Mon Pepe" class="nav-logo-small">
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#tokenomics">Tokenomics</a>
+                <a href="#gallery">Gallery</a>
+                <a href="#community">Community</a>
+            </div>
+        </div>
+    </nav>
 
+    <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <img src="monpepelogo.png" alt="Mon Pepe Logo" class="hero-logo">
-            <div class="hero-image">
-                <img src="PEPE.jpg" alt="Mon Pepe">
+            <!-- Animated Logo -->
+            <div class="logo-container">
+                <div class="logo-wrapper">
+                    <div class="logo-glow"></div>
+                    <img src="monpepelogo.png" alt="Mon Pepe Logo" class="hero-logo">
+                </div>
+            </div>
+
+            <!-- Animated Main Image -->
+            <div class="main-image-container">
+                <div class="image-wrapper">
+                    <div class="image-border"></div>
+                    <img src="PEPE.jpg" alt="Mon Pepe" class="hero-main-image">
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                </div>
+            </div>
+
+            <h1 class="hero-title">Mon Pepe</h1>
+            <p class="hero-subtitle">Pepe but Monadized</p>
+
+            <div class="cta-buttons">
+                <a href="#" class="cta-btn cta-primary">Buy $PEPE</a>
+                <a href="#community" class="cta-btn cta-secondary">Join Community</a>
             </div>
         </div>
     </section>
 
-    <div class="scrolling-banner">
-        <div class="banner-content">
-            <span class="banner-text">$PEPE</span>
-            <span class="banner-text">$PEPE</span>
-            <span class="banner-text">$PEPE</span>
-            <span class="banner-text">$PEPE</span>
-            <span class="banner-text">$PEPE</span>
-            <span class="banner-text">$PEPE</span>
-            <span class="banner-text">$PEPE</span>
-            <span class="banner-text">$PEPE</span>
-            <span class="banner-text">$PEPE</span>
-            <span class="banner-text">$PEPE</span>
+    <!-- Ticker -->
+    <div class="ticker">
+        <div class="ticker-content">
+            <span class="ticker-item">$PEPE</span>
+            <span class="ticker-item">⚡</span>
+            <span class="ticker-item">$PEPE</span>
+            <span class="ticker-item">⚡</span>
+            <span class="ticker-item">$PEPE</span>
+            <span class="ticker-item">⚡</span>
+            <span class="ticker-item">$PEPE</span>
+            <span class="ticker-item">⚡</span>
+            <span class="ticker-item">$PEPE</span>
+            <span class="ticker-item">⚡</span>
+            <span class="ticker-item">$PEPE</span>
+            <span class="ticker-item">⚡</span>
         </div>
     </div>
 
-    <section class="main-title">
+    <!-- Info Cards -->
+    <section class="info-section" id="tokenomics">
         <div class="container">
-            <h1>MON PEPE</h1>
-            <p>Pepe but Monadized.</p>
-        </div>
-    </section>
-
-    <section class="info-boxes">
-        <div class="container">
-            <div class="boxes-container">
-                <div class="info-box">
-                    <img src="PEPE1.JPG" alt="Mon Pepe Token">
-                    <h3>TOKEN</h3>
-                    <p><span class="highlight">$PEPE</span></p>
-                    <p>Based on Mon Network</p>
+            <h2 class="section-title">Tokenomics</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <img src="PEPE1.JPG" alt="Token">
+                    <h3>Token</h3>
+                    <div class="info-value">$PEPE</div>
+                    <p class="info-desc">Based on Mon Network</p>
                 </div>
 
-                <div class="info-box">
-                    <img src="PEPE2.JPG" alt="Mon Pepe Supply">
-                    <h3>SUPPLY</h3>
-                    <p><span class="highlight">1,000,000,000</span></p>
-                    <p>Total Maximum Supply</p>
+                <div class="info-card">
+                    <img src="PEPE2.JPG" alt="Supply">
+                    <h3>Supply</h3>
+                    <div class="info-value">1,000,000,000</div>
+                    <p class="info-desc">Total Maximum Supply</p>
                 </div>
 
-                <div class="info-box">
-                    <img src="PEPE3.JPG" alt="Mon Pepe Liquidity">
-                    <h3>LIQUIDITY</h3>
-                    <p><span class="highlight">LP LOCKED</span></p>
-                    <p>Locked</p>
+                <div class="info-card">
+                    <img src="PEPE3.JPG" alt="Liquidity">
+                    <h3>Liquidity</h3>
+                    <div class="info-value">LP LOCKED</div>
+                    <p class="info-desc">Permanently Secured</p>
                 </div>
             </div>
         </div>
     </section>
 
-<section class="social-icons">
-    <div class="container">
-        <h3 class="social-title">JOIN THE MON PEPE COMMUNITY</h3>
-        <div class="icons-container">
-
-            <a href="https://dexscreener.com" class="social-icon" target="_blank" rel="noopener noreferrer">
-                <img src="dexs.png" alt="DexScreener">
-            </a>
-
-            <a href="https://www.dextools.io" class="social-icon" target="_blank" rel="noopener noreferrer">
-                <img src="dext.png" alt="DEXTools">
-            </a>
-
-            <a href="https://t.me/monpepemonad" class="social-icon" target="_blank" rel="noopener noreferrer">
-                <img src="tg.png" alt="Telegram">
-            </a>
-
-        </div>
-    </div>
-</section>
-
-
-    <section class="ca-section">
+    <!-- Contract -->
+    <section class="contract-section">
         <div class="container">
-            <h2>CONTRACT ADDRESS</h2>
-            <p>489324723894723987429837</p>
+            <h2 class="section-title">Contract Address</h2>
+            <div class="contract-box">
+                <p class="contract-address">489324723894723987429837</p>
+            </div>
         </div>
     </section>
 
-    <section class="about">
+    <!-- About -->
+    <section class="about-section" id="about">
         <div class="container">
-            <h2>ABOUT MON PEPE</h2>
-            <p>
+            <h2 class="section-title">About Mon Pepe</h2>
+            <p class="about-text">
                 <strong>Mon PEPE</strong> is the ultimate meme coin experience built on the MON network. 
                 Combining the power of community-driven tokenomics with the speed and efficiency of MONAD,
                 MON PEPE represents the next evolution in meme coin culture.
@@ -531,38 +926,76 @@
         </div>
     </section>
 
-    <section class="historical-images">
+    <!-- Gallery -->
+    <section class="gallery-section" id="gallery">
         <div class="container">
-            <h3 class="historical-title">MON PEPE GALLERY</h3>
-            <div class="historical-grid">
-                <img src="PEPE4.PNG" alt="Mon Pepe Community" class="historical-image">
-                <img src="PEPE5.JPG" alt="Mon Pepe Token" class="historical-image">
-                <img src="PEPE6.PNG" alt="Mon Pepe Base" class="historical-image">
+            <h2 class="section-title">Gallery</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="PEPE4.PNG" alt="Mon Pepe Community">
+                </div>
+                <div class="gallery-item">
+                    <img src="PEPE5.JPG" alt="Mon Pepe Token">
+                </div>
+                <div class="gallery-item">
+                    <img src="PEPE6.PNG" alt="Mon Pepe Base">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social -->
+    <section class="social-section" id="community">
+        <div class="container">
+            <h2 class="section-title">Join The Community</h2>
+            <div class="social-grid">
+                <a href="https://dexscreener.com" class="social-link" target="_blank">
+                    <img src="dexs.png" alt="DexScreener">
+                </a>
+                <a href="https://www.dextools.io" class="social-link" target="_blank">
+                    <img src="dext.png" alt="DEXTools">
+                </a>
+                <a href="https://t.me/monpepemonad" class="social-link" target="_blank">
+                    <img src="tg.png" alt="Telegram">
+                </a>
             </div>
         </div>
     </section>
 
     <script>
-        const rainContainer = document.getElementById('pepe-rain');
-        const totalDrops = 30;
-
-        for (let i = 0; i < totalDrops; i++) {
-            const drop = document.createElement('img');
-            drop.src = 'PEPEhead.png';
-            drop.classList.add('pepe-drop');
-
-            drop.style.left = Math.random() * window.innerWidth + 'px';
-            const size = 30 + Math.random() * 40;
-            drop.style.width = size + 'px';
-            drop.style.height = 'auto';
-            drop.style.animationDuration = 3 + Math.random() * 5 + 's';
-            drop.style.animationDelay = Math.random() * 5 + 's';
-
-            rainContainer.appendChild(drop);
+        // Generate stars
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 100; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            starsContainer.appendChild(star);
         }
-    </script>
 
+        // 3D mouse follow effect for main image
+        const imageWrapper = document.querySelector('.image-wrapper');
+        const mainImage = document.querySelector('.hero-main-image');
+
+        imageWrapper.addEventListener('mousemove', (e) => {
+            const rect = imageWrapper.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const rotateX = (y - centerY) / 20;
+            const rotateY = (centerX - x) / 20;
+            
+            mainImage.style.transform = `scale(1.05) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+
+        imageWrapper.addEventListener('mouseleave', () => {
+            mainImage.style.transform = '';
+        });
+    </script>
 </body>
 </html>
-
 
